@@ -1,4 +1,4 @@
-This app is deployed on text-utility12.netlify.app.
+This app is deployed on (text-utility12.netlify.app).
 
 # Getting Started with Create React App
 
