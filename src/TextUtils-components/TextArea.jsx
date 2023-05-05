@@ -7,19 +7,22 @@ function TextArea(props) {
   let [replaceText, setReplaceText] = useState("");
 
   // let text2="hi";
-  {text=String(text)}//split karne ke liye isko string mai convert karna is imp.
+  // {text=String(text)}//split karne ke liye isko string mai convert karna is imp.
 
   //-------------------------------------------- FUCNTIONS FOR BUTTONS --------------------------------------
   function changeUpperText() {
     let upperStr = text.toUpperCase();
-    return setText(upperStr);
+    props.showAlert("Changed to UpperCase","success");
+    setText(upperStr);
+    
   }
 
   function changeLowerText() {
     // console.log(text);
     let lowerStr = text.toLowerCase();
     // console.log(upperStr);
-    return setText(lowerStr);
+    setText(lowerStr);
+    props.showAlert("Changed to LowerCase","success");
   }
 
   function clearText() {
@@ -30,13 +33,15 @@ function TextArea(props) {
     let letters = text.split("");
     let reverseLetters = letters.reverse();
     let reverseString = reverseLetters.join("");
-    return setText(reverseString);
+   setText(reverseString);
+   props.showAlert("Text reversed","success");
   }
 
   function copyText(){
     const str=document.getElementById('myText');
     // console.log(str.select());
     navigator.clipboard.writeText(str.value);
+    props.showAlert("Copied to clipboard","success");
   }
 
   function pasteText(){
@@ -87,22 +92,23 @@ function TextArea(props) {
   //--------------------------------------------- RETURN STATEMENT ----------------------------------------
   return (
     <>
-      <div className="container">
+      <div className="container" style={{color:props.mode==='dark'?'white':'black'}}>
         <div className="textarea">
           <h1>{props.heading}</h1>
 
           <textarea
             className="form-control"
+            style={{backgroundColor:props.mode==='dark'?'grey':'white',color:props.mode==='dark'?'white':'black'}}
             rows="8"
             id="myText"
             value={text}
             onChange={handleOnChange}
           />
 {/* --------------------------------------------- BUTTONS -------------------------------------------------------- */}
-          <button className="btn btn-outline-primary" onClick={changeUpperText}>
+          <button className="btn btn-primary" onClick={changeUpperText}>
             Convert to UpperCase
           </button>
-          <button className="btn btn-outline-dark" onClick={changeLowerText}>
+          <button className="btn btn-dark" onClick={changeLowerText}>
             Convert to LowerCase
           </button>
           <button className="btn btn-primary" onClick={reverseText}>
@@ -135,7 +141,7 @@ function TextArea(props) {
         </div>
       </div>
 {/* ---------------------------------------------- FIND --------------------------------------------------------- */}
-      <div className="container finder">
+      <div className="container finder" style={{color:props.mode==='dark'?'white':'black'}}>
         <h2 className="header">Find:</h2>
         <input
           type="text"
@@ -153,7 +159,7 @@ function TextArea(props) {
         <h5>Number of times the word is found: {findCount}</h5>
       </div>
 {/* ---------------------------------------------REPLACE----------------------------------------------------- */}
-      <div className="container replace">
+      <div className="container replace" style={{color:props.mode==='dark'?'white':'black'}}>
         <h2 className="header">Replace: //does not have a functionality right now</h2>
         <input
           type="text"
