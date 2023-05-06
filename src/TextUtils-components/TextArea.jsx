@@ -98,29 +98,29 @@ function TextArea(props) {
 
           <textarea
             className="form-control"
-            style={{backgroundColor:props.mode==='dark'?'grey':'white',color:props.mode==='dark'?'white':'black'}}
+            style={{backgroundColor:props.mode==='dark'?'#455b62':'white',color:props.mode==='dark'?'white':'black'}}
             rows="8"
             id="myText"
             value={text}
             onChange={handleOnChange}
           />
 {/* --------------------------------------------- BUTTONS -------------------------------------------------------- */}
-          <button className="btn btn-primary" onClick={changeUpperText}>
+          <button className="btn btn-primary" onClick={changeUpperText} disabled={text.length===0}>
             Convert to UpperCase
           </button>
-          <button className="btn btn-dark" onClick={changeLowerText}>
+          <button className="btn btn-dark" onClick={changeLowerText} disabled={text.length===0}>
             Convert to LowerCase
           </button>
-          <button className="btn btn-primary" onClick={reverseText}>
+          <button className="btn btn-primary" onClick={reverseText} disabled={text.length===0}>
             Reverse Text
           </button>
-          <button className="btn btn-dark" onClick={copyText}>
+          <button className="btn btn-dark" onClick={copyText} disabled={text.length===0}>
             Copy Text
           </button>
           <button className="btn btn-primary" onClick={pasteText}>
             Paste Copied Text
           </button>
-          <button className="btn btn-dark clear" onClick={clearText}>
+          <button className="btn btn-dark clear" onClick={clearText} disabled={text.length===0}>
             Clear Text
           </button>
 {/* ----------------------------------------- SUMMARY -------------------------------------------------------- */}
@@ -131,12 +131,12 @@ function TextArea(props) {
           <h2 className="header">Your text Summary:</h2>
           <p>
             {" "}
-            {(text==='')?0:text.split(" ").length} words and {text.length} letters{" "}
+            {text.split(" ").filter((ele)=>{return ele.length!==0}).length} words and {text.length} letters{" "}
           </p>
           <p>{(text==='')?0:(0.008 * text.split(" ").length)} minutes to read it slowly</p>
           <p>{(text==='')?0:text.split(".").length} Sentences</p>
           <h2>Preview</h2>
-          <p>{text.substring(0,200)}</p>
+          <p>{text.length===0?"Nothing to preview":text.substring(0,200)}</p>
           
         </div>
       </div>
@@ -150,10 +150,10 @@ function TextArea(props) {
           onChange={findOnChange}
           placeholder="Enter find text"
         />
-        <button className="btn btn-primary find" onClick={finder}>
+        <button className="btn btn-primary find" onClick={finder} disabled={findText.length===0}>
           Find
         </button>
-        <button className="btn btn-primary find" onClick={resetFinder}>
+        <button className="btn btn-primary find" onClick={resetFinder} disabled={findText.length===0}>
           Clear
         </button>
         <h5>Number of times the word is found: {findCount}</h5>

@@ -30,13 +30,13 @@ function App() {
       setMode('light');
       document.body.style.backgroundColor='white';
       showAlert("Light Mode has been enabled","success");
-      document.title='TextUtils-Light Mode'
+      // document.title='TextUtils-Light Mode'
     }
     else{
       setMode('dark');
       document.body.style.backgroundColor='#031d37';
       showAlert("Dark Mode has been enabled","success");
-      document.title='TextUtils-Dark Mode';
+      // document.title='TextUtils-Dark Mode';
     }
   }
 
@@ -47,7 +47,7 @@ function App() {
         <Alert alert={alert}/>
         <Routes>
           <Route exact path='/' element={<TextArea heading="Enter your text" mode={mode} showAlert={showAlert} />}/>
-          <Route exact path='/about' element={<About />}/>
+          <Route exact path='/about' element={<About mode={mode}/>}/>
         </Routes>
         
 
